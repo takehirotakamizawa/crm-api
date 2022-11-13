@@ -1,0 +1,39 @@
+{
+    "name": "crm-api",
+    "version": "1.0.0",
+    "description": "npm install",
+    "main": "index.js",
+    "scripts": {
+        "test": "mocha spec && yarn lint --exit",
+        "start": "node ./src/index.js",
+        "dev": "nodemon ./src/index.js",
+        "migrate": "knex migrate:latest",
+        "seed": "knex seed:run",
+        "format": "prettier --write .",
+        "lint": "eslint --fix ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/takehirotakamizawa/crm-api.git"
+    },
+    "author": "takehirotakamizawa",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/takehirotakamizawa/crm-api/issues"
+    },
+    "homepage": "https://github.com/takehirotakamizawa/crm-api#readme",
+    "dependencies": {
+        "chai": "^4.3.7",
+        "eslint": "^8.27.0",
+        "mocha": "^10.1.0",
+        "pg": "^8.8.0",
+        "prettier": "^2.7.1"
+    },
+    "devDependencies": {
+        "chai-http": "^4.3.0",
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2",
+        "knex": "^2.3.0",
+        "nodemon": "^2.0.20"
+    }
+}
