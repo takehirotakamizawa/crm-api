@@ -7,7 +7,7 @@ module.exports = {
 
     /**
      * @param
-     * @return {Promise<Array>} A promise that resolves to an array of customers.
+     * @return {Promise<Array>} A promise that resolves to an array of accounts.
      */
     getAll() {
         return knex
@@ -20,8 +20,8 @@ module.exports = {
     },
 
     /**
-     * @param {number} id - The customer's id.
-     * @return {Promise<Object>} A promise that resolves to the customer that matches the id.
+     * @param {number} id - The account's id.
+     * @return {Promise<Object>} A promise that resolves to the account that matches the id.
      */
     getById(id) {
         return knex
@@ -37,52 +37,87 @@ module.exports = {
             .first()
     },
 
-    //   /**
-    //    * @param {Object} customer - The new customer data to add.
-    //    * @return {Promise<number>} A promise that resolves to the id of created customer.
-    //    */
-    //   create(customer) {
-    //     validateRequired(
-    //       validateProps(customer)
-    //     );
-    //     // YOUR CODE HERE
-    //     return knex(CUSTOMER_TABLE).insert([{
-    //       id: customer.id,
-    //       email: customer.email,
-    //       first_name: customer.first_name,
-    //       last_name: customer.last_name,
-    //       address: customer.address,
-    //       city: customer.city,
-    //       region: customer.region,
-    //       postal_code: customer.postal_code,
-    //       country: customer.country
-    //     }])
+    /**
+     * @param {String} email - The account's id.
+     * @return {Promise<Object>} A promise that resolves to the account that matches the id.
+     */
+    getByEmail(email) {
+        return knex
+            .select({
+                id: 'id',
+                firstName: 'first_name',
+                lastName: 'last_name',
+            })
+            .from(ACCOUNT_TABLE)
+            .where({
+                email: email,
+            })
+            .first()
+    },
 
-    //   },
+    /**
+     * @param {Object} account - The new account data to add.
+     * @return {Promise<number>} A promise that resolves to the id of created account.
+     */
+    create(account) {
+        console.log('createが呼ばれた')
+        return knex(ACCOUNT_TABLE)
+            .insert(
+                [
+                    {
+                        id: account.id,
+                        email: account.email,
+                        first_name: account.first_name,
+                        last_name: account.last_name,
+                        address: account.address,
+                        region: account.region,
+                        postal_code: account.postal_code,
+                        country: account.country,
+                    },
+                ],
+                ['id']
+            )
+            .then((result) => {
+                return result[0].id
+            })
+    },
 
-    //   /**
-    //    * @param {number} id - The unique id of the existing customer.
-    //    * @param {Object} customer - The customer data to change.
-    //    * @return {Promise<number>} A promise that resolves to the id of the updated customer.
-    //    */
-    //   update(id, customer) {
-    //     validateProps(customer);
+    /**
+     * @param {number} id - The new account data to add.
+     * @return {Promise<number>} A promise that resolves to the id of created account.
+     */
+    delete(id) {
+        console.log('deleteが呼ばれた')
+        return knex
+            .from(ACCOUNT_TABLE)
+            .where('id', id)
+            .del(['id'])
+            .then((result) => {
+                return result[0].id
+            })
+            .catch(console.error)
+    },
 
-    //     // YOU CODE HERE
-    //     return knex(CUSTOMER_TABLE)
-    //       .where({ id: id })
-    //       .update({
-    //         email: customer.email,
-    //         first_name: customer.first_name,
-    //         last_name: customer.last_name,
-    //         address: customer.address,
-    //         city: customer.city,
-    //         region: customer.region,
-    //         postal_code: customer.postal_code,
-    //         country: customer.country
-    //       },['id'])
-    //       .then((result)=>{
-    //         return result[0].id;
-    //       });
-    //   }
+    /**
+     * @param {number} id - The unique id of the existing customer.
+     * @param {Object} account - The customer data to change.
+     * @return {Promise<number>} A promise that resolves to the id of the updated customer.
+     */
+    update(id, account) {
+        console.log('updateが呼ばれた')
+        console.log('引数ID:3=' + id)
+        console.log('引数data:last_name:nomuranomura=' + account)
+        console.log('引数data.last_name:nomuranomura=' + account.last_name)
+        return knex(ACCOUNT_TABLE)
+            .where({ id: id })
+            .update(
+                {
+                    last_name: account.last_name,
+                },
+                ['id']
+            )
+            .then((result) => {
+                return result[0].id
+            })
+    },
 }
