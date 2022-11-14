@@ -53,8 +53,6 @@ describe('CRM-API', () => {
                 .from(ACCOUNT_SEQ)
                 .first()
                 .catch(console.error)
-            seqbk = seq.lastValue
-            console.log('seqbk=' + seqbk)
         })
 
         after(async () => {

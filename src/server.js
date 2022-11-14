@@ -8,7 +8,6 @@ const setupServer = () => {
 
     //ルーティング実装
     app.get('/api/accounts', async (req, res) => {
-        console.log('GET api/accountsが呼ばれた')
         if (req.query.id) {
             const accounts = await accountModel.getById(req.query.id)
             return res.json(accounts)
@@ -21,7 +20,6 @@ const setupServer = () => {
     })
 
     app.post('/api/accounts', async (req, res) => {
-        console.log('POST api/accountsが呼ばれた')
         const payload = {
             email: req.body.email,
             first_name: req.body.firstName,
@@ -40,7 +38,6 @@ const setupServer = () => {
     })
 
     app.delete('/api/accounts/:id', async (req, res) => {
-        console.log('DELETE api/accountsが呼ばれた')
         const accounts = await accountModel.getById(req.params.id)
         if (accounts) {
             const deletedId = await accountModel.delete(Number(req.params.id))
@@ -50,7 +47,6 @@ const setupServer = () => {
     })
 
     app.patch('/api/accounts/:id', async (req, res) => {
-        console.log('PATCH api/accountsが呼ばれた')
         const data = {
             last_name: req.body.lastName,
         }

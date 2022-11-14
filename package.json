@@ -4,7 +4,7 @@
     "description": "npm install",
     "main": "index.js",
     "scripts": {
-        "test": "mocha spec && yarn lint --exit",
+        "test": "mocha spec --exit",
         "start": "node ./src/index.js",
         "dev": "nodemon ./src/index.js",
         "migrate": "knex migrate:latest",

@@ -60,7 +60,6 @@ module.exports = {
      * @return {Promise<number>} A promise that resolves to the id of created account.
      */
     create(account) {
-        console.log('createが呼ばれた')
         return knex(ACCOUNT_TABLE)
             .insert(
                 [
@@ -87,7 +86,6 @@ module.exports = {
      * @return {Promise<number>} A promise that resolves to the id of created account.
      */
     delete(id) {
-        console.log('deleteが呼ばれた')
         return knex
             .from(ACCOUNT_TABLE)
             .where('id', id)
@@ -104,7 +102,6 @@ module.exports = {
      * @return {Promise<number>} A promise that resolves to the id of the updated customer.
      */
     update(id, account) {
-        console.log('updateが呼ばれた')
         return knex(ACCOUNT_TABLE)
             .where({ id: id })
             .update(
