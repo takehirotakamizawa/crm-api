@@ -19,7 +19,7 @@ describe('CRM-API', () => {
     })
     describe('GET /api/accounts', () => {
         it('should returns all accounts', async () => {
-            // expected。JSONデータを手書きする
+            // expected
             const expected = [
                 { id: 1, firstName: 'taro1', lastName: 'nomura' },
                 { id: 2, firstName: 'taro2', lastName: 'nomura' },

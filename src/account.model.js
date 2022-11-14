@@ -105,9 +105,6 @@ module.exports = {
      */
     update(id, account) {
         console.log('updateが呼ばれた')
-        console.log('引数ID:3=' + id)
-        console.log('引数data:last_name:nomuranomura=' + account)
-        console.log('引数data.last_name:nomuranomura=' + account.last_name)
         return knex(ACCOUNT_TABLE)
             .where({ id: id })
             .update(
